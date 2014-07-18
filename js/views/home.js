@@ -1,9 +1,10 @@
 /* Require modules */
-var $ = require('jquery'),
+var $        = require('jquery'),
     Backbone = require('backbone'),
-    models = require('../models/global'),
+    models   = require('../models/global'),
     template = require("../templates/home.html"),
-    utils = require("../utilities");
+    utils    = require("../utilities"),
+    events   = require('../eventChannel');
 
 // Assign jQuery instance to Backbone.$
 Backbone.$ = $;
@@ -18,8 +19,7 @@ module.exports = Backbone.View.extend({
 
         // Set the model for the view
         this.model = new models.BasicModel({ urlRoot: '/data/home.json' });
-
-
+ 
         // Call function to fetch data for view
         this.fetchData();
     },  
@@ -35,6 +35,8 @@ module.exports = Backbone.View.extend({
     		success: function () {
     			// Call function to render view
     			$this.render();
+                // Trigger event for other modules to listen for
+                events.trigger('homeData:retrieved');
     		}
     	});
     	// END fetch

@@ -1,5 +1,5 @@
 /* Require modules */
-var $ = require('jquery'),
+var $        = require('jquery'),
     Backbone = require('backbone'),
     _        = require('underscore');
 

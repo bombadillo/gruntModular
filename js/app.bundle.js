@@ -13,7 +13,7 @@ var router = new Router();
 // Call function to start the Backbone history functionality
 Backbone.history.start();
 
-},{"./router":3,"backbone":6,"jquery":7}],2:[function(require,module,exports){
+},{"./router":3,"backbone":7,"jquery":8}],2:[function(require,module,exports){
 /* Require modules */
 var $ = require('jquery'),
     Backbone = require('backbone'),
@@ -141,7 +141,7 @@ module.exports = {
     BasicModel: BasicModel,
     BasicCollection: BasicCollection
 };
-},{"backbone":6,"jquery":7,"underscore":8}],3:[function(require,module,exports){
+},{"backbone":7,"jquery":8,"underscore":9}],3:[function(require,module,exports){
 /* Require modules */
 var $ = require('jquery'),
     Backbone = require('backbone');
@@ -149,26 +149,27 @@ var $ = require('jquery'),
 // Assign jQuery instance to Backbone.$
 Backbone.$ = $;
 
-// Require views.
-var HomeView = require('./views/home');
-
-// Create instances of views.
-var homeView = new HomeView({ el: $('#el-home') });    
-
+// Set the router as the module exports
 module.exports = Backbone.Router.extend({
 
+	// The app routes ("routeUrl": "routeName")
     routes: {
         "": "home",
         "employees/:id": "employeeDetails",
         "employees/:id/reports": "reports"
     },
 
+    // Home route listener
     home: function () {
-        console.log("home");
+		// Require views.
+		var HomeView = require('./views/home');
+
+		// Create instances of views.
+		var homeView = new HomeView({ el: $('#el-home') });    
     },
 
 });
-},{"./views/home":5,"backbone":6,"jquery":7}],4:[function(require,module,exports){
+},{"./views/home":6,"backbone":7,"jquery":8}],4:[function(require,module,exports){
 var _ = require('underscore');
 module.exports = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
@@ -179,12 +180,69 @@ __p+='<h1>Hello, '+
 }
 return __p;
 };
-},{"underscore":8}],5:[function(require,module,exports){
+},{"underscore":9}],5:[function(require,module,exports){
+// Set the object as the module exports
+module.exports = {
+
+    /*  Name      log
+     *  Purpose   To log a message to the browsers console.
+     *  @params   {string}    message    The message to be output.
+     *            {string}    sEvent     The type of message.            
+    */     
+    log: function(message, type) {
+        // Check if console.log exists.
+        if (console && console.log) {            
+            // Variable to hold style.
+            var style = "padding: 3px;";
+
+            // Switch the type to determine style.
+            switch (type) {
+                // View render.
+                case 'viewRender':
+                    style += 'background: #C0EAC0; color: #78CC78;';
+                break;
+                // Object initiation.
+                case 'initiated':
+                    style += 'background: #8DC1E0; color: #659EBC;';
+                break;
+                // Error.
+                case 'error':
+                    style += 'background: #D9534F; color: #ffffff;';
+                break;
+                // Debug.
+                case 'debug':
+                    style += 'background: #F0AD4E; color: #ffffff;';
+                break;
+                // Route change.
+                case 'routeChange':
+                    style += 'background: #F7F7F9; color: #CECEEF;';
+                break;
+                // Route change.
+                case 'dataFetch':
+                    style += 'background: #878F94; color: #6E757B;';
+                break;                   
+                // Default.
+                default:
+                    style += 'background: #F0AD4E; color: #ffffff;';
+                break;
+            }
+            // END switch.
+
+            // Log the message.
+            console.log('%c '+ message +' ', style);
+        }
+        // END if console.log.
+    }
+    /**********************************************************************/  
+
+};
+},{}],6:[function(require,module,exports){
 /* Require modules */
 var $ = require('jquery'),
     Backbone = require('backbone'),
     models = require('../models/global'),
-    template = require("../templates/home.html");
+    template = require("../templates/home.html"),
+    utils = require("../utilities");
 
 // Assign jQuery instance to Backbone.$
 Backbone.$ = $;
@@ -194,7 +252,8 @@ module.exports = Backbone.View.extend({
 
 	// Is called at instantiation
     initialize: function () {
-        console.log("home initialize");
+        // Log status
+        utils.log("Home", "viewRender");
 
         // Set the model for the view
         this.model = new models.BasicModel({ urlRoot: '/data/home.json' });
@@ -206,7 +265,7 @@ module.exports = Backbone.View.extend({
 
     // Fetches the data for the view
     fetchData: function () {
-
+   
     	// Assign scope
     	var $this = this;
 
@@ -230,12 +289,9 @@ module.exports = Backbone.View.extend({
         // Enable chaining
         return this;
     },
-  
-    events: {
-    },
 
 });
-},{"../models/global":2,"../templates/home.html":4,"backbone":6,"jquery":7}],6:[function(require,module,exports){
+},{"../models/global":2,"../templates/home.html":4,"../utilities":5,"backbone":7,"jquery":8}],7:[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -1845,7 +1901,7 @@ module.exports = Backbone.View.extend({
 
 }));
 
-},{"underscore":8}],7:[function(require,module,exports){
+},{"underscore":9}],8:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.1
  * http://jquery.com/
@@ -11037,7 +11093,7 @@ return jQuery;
 
 }));
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 //     Underscore.js 1.6.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors

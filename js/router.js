@@ -5,22 +5,23 @@ var $ = require('jquery'),
 // Assign jQuery instance to Backbone.$
 Backbone.$ = $;
 
-// Require views.
-var HomeView = require('./views/home');
-
-// Create instances of views.
-var homeView = new HomeView({ el: $('#el-home') });    
-
+// Set the router as the module exports
 module.exports = Backbone.Router.extend({
 
+	// The app routes ("routeUrl": "routeName")
     routes: {
         "": "home",
         "employees/:id": "employeeDetails",
         "employees/:id/reports": "reports"
     },
 
+    // Home route listener
     home: function () {
-        console.log("home");
+		// Require views.
+		var HomeView = require('./views/home');
+
+		// Create instances of views.
+		var homeView = new HomeView({ el: $('#el-home') });    
     },
 
 });

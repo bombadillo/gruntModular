@@ -2,7 +2,8 @@
 var $ = require('jquery'),
     Backbone = require('backbone'),
     models = require('../models/global'),
-    template = require("../templates/home.html");
+    template = require("../templates/home.html"),
+    utils = require("../utilities");
 
 // Assign jQuery instance to Backbone.$
 Backbone.$ = $;
@@ -12,7 +13,8 @@ module.exports = Backbone.View.extend({
 
 	// Is called at instantiation
     initialize: function () {
-        console.log("home initialize");
+        // Log status
+        utils.log("Home", "viewRender");
 
         // Set the model for the view
         this.model = new models.BasicModel({ urlRoot: '/data/home.json' });
@@ -24,7 +26,7 @@ module.exports = Backbone.View.extend({
 
     // Fetches the data for the view
     fetchData: function () {
-
+   
     	// Assign scope
     	var $this = this;
 
@@ -47,9 +49,6 @@ module.exports = Backbone.View.extend({
 
         // Enable chaining
         return this;
-    },
-  
-    events: {
     },
 
 });

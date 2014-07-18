@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-
+ 
 		// Our LESS options
 		less: {
 		    production: {
@@ -59,8 +59,8 @@ module.exports = function(grunt) {
 		    	tasks: ["less"]
 		    },
 		    scripts: {
-		    	files: "js/**/*.js",
-		    	tasks: ["dev"]
+		    	files: ["js/**/*.js", "!js/app.bundle.js"],
+		    	tasks: ["browserify"]
 		    }
 		}			  
 

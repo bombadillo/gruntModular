@@ -1,3 +1,7 @@
-node_modules
+css/_vendor/bootstrap
+css/main.css
+cass/styles.css
+js/_vendor/bootstrap.js
 js/app.bundle.js
 js/app.bundle.min.js
+node_modules

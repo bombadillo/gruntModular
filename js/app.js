@@ -1,12 +1,18 @@
 /* Require modules */
-var $        = require('jquery'),
-    Backbone = require('backbone'),
-    Router   = require('./router'),    
-    events   = require('./eventChannel'),
-    utils    = require('./utilities');
+var $         = require('jquery'),
+    Backbone  = require('backbone'),
+    Router    = require('./router'),    
+    events    = require('./eventChannel'),
+    utils     = require('./utilities');
+
+// Set jQuery to window object to enable global access
+window.jQuery = $;
+
+// Require bootstrap.
+bootstrap = require('./_vendor/bootstrap');
 
 // Assign jQuery instance to Backbone.$
-Backbone.$ = $;  
+Backbone.$ = $;
 
 // Create instance of router
 var router = new Router();

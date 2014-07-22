@@ -2,6 +2,37 @@ module.exports = function(grunt) {
  
     grunt.initConfig({
  
+		copy: {
+			bootstrapCss: {
+				// set working folder / root to copy
+				cwd: 'node_modules/bootstrap/less',  
+				// copy all files and subfolders
+				src: '**/*',        
+				// destination folder   
+				dest: 'css/_vendor/bootstrap',    
+				// required when using cwd
+				expand: true           
+			},
+			bootstrapJs: {
+				// set working folder / root to copy
+				cwd: 'node_modules/bootstrap/dist/js/',  
+				// copy all files and subfolders
+				src: 'bootstrap.js',        
+				// destination folder   
+				dest: 'js/_vendor/',    
+				// required when using cwd
+				expand: true    				
+			}
+		},
+
+		clean : {
+		    yourTarget : {
+		        src : [ 
+		        	"css/_vendor/bootstrap/variables.less"
+		        ]
+		    }
+		},
+
         // Our JSHint options
         jshint: {
         	options: {
@@ -73,6 +104,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
  
     // Default tasks to run
     grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin', 'less']);

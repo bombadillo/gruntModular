@@ -1,4 +1,4 @@
-gruntModular
+gruntModular [![Build Status](https://travis-ci.org/bombadillo/gruntBasic.svg?branch=master)](https://travis-ci.org/bombadillo/gruntBasic)
 ============
 
 Modular boilerplate/starter app with grunt tools for JS checking, LESS CSS compilation and others.

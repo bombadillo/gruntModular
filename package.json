@@ -17,7 +17,7 @@
     "grunt-contrib-clean": "~0.5.0"
   },
   "dependencies": {
-    "jquery": "",
+    "jquery": "1.11.1",
     "underscore": "",
     "backbone": "",
     "bootstrap": "3.2.0"
